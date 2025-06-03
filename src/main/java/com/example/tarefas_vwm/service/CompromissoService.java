@@ -14,7 +14,7 @@ public class CompromissoService {
     @Autowired
     private CompromissoRepository compromissoRepository;
 
-    public List<Compromisso > findAll() {
+    public List<Compromisso> findAll() {
         return compromissoRepository.findAll();
     }
 

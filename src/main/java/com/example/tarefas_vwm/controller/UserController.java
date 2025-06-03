@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 @CrossOrigin(origins = "*")
 public class UserController {
 
@@ -39,10 +39,5 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.delete(id);
-    }
-
-    @PostMapping("/login")
-    public Optional<User> login(@RequestBody User user) {
-        return userService.authenticate(user.getEmail(), user.getPassword());
     }
 }
