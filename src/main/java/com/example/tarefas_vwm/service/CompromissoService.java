@@ -28,17 +28,16 @@ public class CompromissoService {
 
     public Compromisso update(Long id, Compromisso Compromisso) {
         Compromisso CompromissoExistente = compromissoRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Compromisso não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Compromisso não encontrado"));
 
-            CompromissoExistente.setTitulo(Compromisso.getTitulo());
-            CompromissoExistente.setDescricao(Compromisso.getDescricao());
-            CompromissoExistente.setDataHoraInicio(Compromisso.getDataHoraInicio());
-            CompromissoExistente.setDataHoraFim(Compromisso.getDataHoraFim());
-            CompromissoExistente.setLocal(Compromisso.getLocal());
+        CompromissoExistente.setTitulo(Compromisso.getTitulo());
+        CompromissoExistente.setDescricao(Compromisso.getDescricao());
+        CompromissoExistente.setDataHoraInicio(Compromisso.getDataHoraInicio());
+        CompromissoExistente.setDataHoraFim(Compromisso.getDataHoraFim());
+        CompromissoExistente.setLocal(Compromisso.getLocal());
 
-            return compromissoRepository.save(CompromissoExistente);
-        }
-
+        return compromissoRepository.save(CompromissoExistente);
+    }
 
     public void delete(Long id) {
         compromissoRepository.deleteById(id);

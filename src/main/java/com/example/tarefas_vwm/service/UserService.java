@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.tarefas_vwm.model.User;
 import com.example.tarefas_vwm.repository.UserRepository;
@@ -16,7 +16,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -27,26 +27,33 @@ public class UserService {
     }
 
     public User create(User user) {
+        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("Já existe um usuário cadastrado com este email");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     public User update(Long id, User user) {
         User usuarioExistente = userRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-            usuarioExistente.setName(user.getName());
-            usuarioExistente.setEmail(user.getEmail());
-            if (user.getPassword() != null && !user.getPassword().isBlank()) {
-                usuarioExistente.setPassword(passwordEncoder.encode(user.getPassword()));
-            }
-
-            return userRepository.save(usuarioExistente);
+        usuarioExistente.setName(user.getName());
+        usuarioExistente.setEmail(user.getEmail());
+        if (user.getPassword() != null && !user.getPassword().isBlank()) {
+            usuarioExistente.setPassword(passwordEncoder.encode(user.getPassword()));
         }
 
+        return userRepository.save(usuarioExistente);
+    }
 
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public Optional<User> authenticate(String email, String password) {

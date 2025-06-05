@@ -74,10 +74,9 @@ public class User {
     }
 
 
-    public boolean isAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
-
 
     public void setAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
