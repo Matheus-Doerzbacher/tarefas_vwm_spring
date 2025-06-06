@@ -1,0 +1,1 @@
+ALTER TABLE lembretes CHANGE COLUMN data_hora data_criacao DATETIME NOT NULL; 

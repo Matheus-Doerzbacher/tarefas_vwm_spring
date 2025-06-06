@@ -1,47 +1,26 @@
-package com.example.tarefas_vwm.model;
+package com.example.tarefas_vwm.dto;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "compromissos")
-public class Compromisso {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CompromissoDTO {
     private Long idCompromisso;
-
-    @Column(nullable = false)
     private String titulo;
-
-    @Column(nullable = false)
     private String descricao;
-
-    @Column(nullable = false)
     private LocalDateTime dataHoraInicio;
-
-    @Column(nullable = false)
     private LocalDateTime dataHoraFim;
-
-    @Column(nullable = false)
     private String local;
 
-    @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
-    private User usuario;
-
-    public Compromisso() {
+    public CompromissoDTO() {
     }
 
-    public Compromisso(Long idCompromisso, String titulo, String descricao, LocalDateTime dataHoraInicio,
-            LocalDateTime dataHoraFim, String local, User usuario) {
+    public CompromissoDTO(Long idCompromisso, String titulo, String descricao, LocalDateTime dataHoraInicio,
+            LocalDateTime dataHoraFim, String local) {
         this.idCompromisso = idCompromisso;
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataHoraInicio = dataHoraInicio;
         this.dataHoraFim = dataHoraFim;
         this.local = local;
-        this.usuario = usuario;
     }
 
     public Long getIdCompromisso() {
@@ -91,13 +70,4 @@ public class Compromisso {
     public void setLocal(String local) {
         this.local = local;
     }
-
-    public User getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
-    }
-
 }

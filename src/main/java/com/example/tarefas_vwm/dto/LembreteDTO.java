@@ -1,44 +1,24 @@
-package com.example.tarefas_vwm.model;
+package com.example.tarefas_vwm.dto;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "lembretes")
-public class Lembrete {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class LembreteDTO {
     private Long idLembrete;
-
-    @Column(nullable = false)
     private String titulo;
-
-    @Column(nullable = false)
     private String descricao;
-
-    @Column(nullable = false)
     private LocalDateTime dataCriacao;
-
-    @Column(nullable = false)
     private boolean isConcluido;
 
-    @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
-    private User usuario;
-
-    public Lembrete() {
-        this.dataCriacao = LocalDateTime.now();
-        this.isConcluido = false;
+    public LembreteDTO() {
     }
 
-    public Lembrete(Long idLembrete, String titulo, String descricao, User usuario) {
+    public LembreteDTO(Long idLembrete, String titulo, String descricao, LocalDateTime dataCriacao,
+            boolean isConcluido) {
         this.idLembrete = idLembrete;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.dataCriacao = LocalDateTime.now();
-        this.isConcluido = false;
-        this.usuario = usuario;
+        this.dataCriacao = dataCriacao;
+        this.isConcluido = isConcluido;
     }
 
     public Long getIdLembrete() {
@@ -77,15 +57,7 @@ public class Lembrete {
         return isConcluido;
     }
 
-    public void setIsConcluido(boolean concluido) {
-        isConcluido = concluido;
-    }
-
-    public User getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
+    public void setIsConcluido(boolean isConcluido) {
+        this.isConcluido = isConcluido;
     }
 }
