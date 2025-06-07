@@ -6,18 +6,18 @@ public class LembreteDTO {
     private Long idLembrete;
     private String titulo;
     private String descricao;
-    private LocalDateTime dataCriacao;
+    private LocalDateTime dataHora;
     private boolean isConcluido;
 
     public LembreteDTO() {
     }
 
-    public LembreteDTO(Long idLembrete, String titulo, String descricao, LocalDateTime dataCriacao,
+    public LembreteDTO(Long idLembrete, String titulo, String descricao, LocalDateTime dataHora,
             boolean isConcluido) {
         this.idLembrete = idLembrete;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
+        this.dataHora = dataHora;
         this.isConcluido = isConcluido;
     }
 
@@ -45,12 +45,12 @@ public class LembreteDTO {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
+    public LocalDateTime getDataHora() {
+        return dataHora;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 
     public boolean getIsConcluido() {

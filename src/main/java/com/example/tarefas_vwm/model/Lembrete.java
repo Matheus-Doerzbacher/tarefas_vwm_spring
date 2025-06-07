@@ -17,8 +17,8 @@ public class Lembrete {
     @Column(nullable = false)
     private String descricao;
 
-    @Column(nullable = false)
-    private LocalDateTime dataCriacao;
+    @Column()
+    private LocalDateTime dataHora;
 
     @Column(nullable = false)
     private boolean isConcluido;
@@ -28,7 +28,6 @@ public class Lembrete {
     private User usuario;
 
     public Lembrete() {
-        this.dataCriacao = LocalDateTime.now();
         this.isConcluido = false;
     }
 
@@ -36,7 +35,15 @@ public class Lembrete {
         this.idLembrete = idLembrete;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.dataCriacao = LocalDateTime.now();
+        this.isConcluido = false;
+        this.usuario = usuario;
+    }
+
+    public Lembrete(Long idLembrete, String titulo, String descricao, LocalDateTime dataHora, User usuario) {
+        this.idLembrete = idLembrete;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.dataHora = dataHora;
         this.isConcluido = false;
         this.usuario = usuario;
     }
@@ -65,12 +72,12 @@ public class Lembrete {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
+    public LocalDateTime getDataHora() {
+        return dataHora;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 
     public boolean getIsConcluido() {

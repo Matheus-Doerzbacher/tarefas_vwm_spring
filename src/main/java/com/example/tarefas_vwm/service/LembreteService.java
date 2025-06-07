@@ -29,7 +29,9 @@ public class LembreteService {
     }
 
     public Lembrete create(Lembrete lembrete) {
-        lembrete.setDataCriacao(LocalDateTime.now());
+        if (lembrete.getIsConcluido() != true) {
+            lembrete.setIsConcluido(false);
+        }
         return lembreteRepository.save(lembrete);
     }
 

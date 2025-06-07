@@ -31,7 +31,7 @@ public class LembreteController {
                 lembrete.getIdLembrete(),
                 lembrete.getTitulo(),
                 lembrete.getDescricao(),
-                lembrete.getDataCriacao(),
+                lembrete.getDataHora(),
                 lembrete.getIsConcluido());
     }
 
