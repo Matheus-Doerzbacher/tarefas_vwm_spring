@@ -18,18 +18,14 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private boolean isAdmin;
-
     public User() {
     }
 
-    public User(Long idUsuario, String email, String password, String name, boolean isAdmin) {
+    public User(Long idUsuario, String email, String password, String name) {
         this.idUsuario = idUsuario;
         this.email = email;
         this.password = password;
         this.name = name;
-        this.isAdmin = isAdmin;
     }
 
     public Long getIdUsuario() {
@@ -63,13 +59,4 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
 }
